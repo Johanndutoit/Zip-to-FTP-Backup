@@ -1,0 +1,49 @@
+Zip to Backup - Johann du Toit v0.0.1
+=======================
+
+Takes a List of configured directories. Zips them then uploads to a FTP Server. Deleting any Records older than a configured stale variable.
+
+Requirements
+========================
+Nothing Just Python :D
+
+Why?
+========================
+Was helping with providing backups to the Infrastructure and could not find a quick and small too to do this. So I wrote one. Nothing big, we run it every once a week through Windows Task Scheduler
+
+backupcfg.ini
+========================
+
+You can configure a bunch of options for the Script:
+
+[folders]: 		Any Folders listed under [folders] will be zipped. These can be
+			networked files, local files, mounted drives anything just as long
+			as you have access to it.
+			For Example
+			[folders]
+			\\computer\myimportantfiles
+		
+[ftp]:			Configure FTP Details in this Section
+username:		Your FTP Server's Username to login with
+password: 		Your FTP Server's Password for the Previous indicated Username
+host:			Host address of your Server either.
+keep_for_months:	After how many months is a zip seen as stale.
+
+Example Config File
+------------------------
+[folders]
+\\computer\myimportantfiles
+myotherfiles
+c:\Users\myuser\Documents
+
+[ftp]
+username=ftp_username
+password=ftp_password
+host=ftp_host
+keep_for_months = 2
+------------------------
+
+Usage
+========================
+To run the Script just configure the .ini file, go to the directory of the script and use:
+python backup_to_ftp.py
